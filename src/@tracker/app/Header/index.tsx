@@ -1,10 +1,13 @@
-import { AppBar, Toolbar } from "@mui/material";
+import { AppBar, Toolbar } from "@tracker/common";
 
 const Header = () => {
   return (
-    <AppBar>
+    <>
+      <AppBar>
+        <Toolbar />
+      </AppBar>
       <Toolbar />
-    </AppBar>
+    </>
   );
 };
 
