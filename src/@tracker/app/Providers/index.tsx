@@ -1,14 +1,12 @@
-import { ChakraProvider } from "@chakra-ui/react"
-import { BrowserRouter } from "react-router-dom"
-
-import { theme } from "@tracker/chakra-ui"
+import { ThemeProvider, createTheme } from "@mui/material";
+import { BrowserRouter } from "react-router-dom";
 
 const Providers: React.FunctionComponent = ({ children }) => {
   return (
     <BrowserRouter>
-      <ChakraProvider theme={theme}>{children}</ChakraProvider>
+      <ThemeProvider theme={createTheme()}>{children}</ThemeProvider>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export { Providers }
+export { Providers };
