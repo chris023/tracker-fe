@@ -1,8 +1,6 @@
-import { TileLayer, Marker, Popup } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 
 import { Box } from "@tracker/common"
-
-import { MapContainer } from "./styles"
 
 const Map = () => {
   return (
