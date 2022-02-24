@@ -1,5 +1,7 @@
+import { Map } from "./components"
+
 const Dashboard = () => {
-  return null
+  return <Map />
 }
 
 export { Dashboard }
