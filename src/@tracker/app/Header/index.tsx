@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
 import {
   AppBar,
@@ -11,31 +11,41 @@ import {
   Button,
   Tooltip,
   MenuItem,
-} from "@tracker/common"
-import MenuIcon from "@mui/icons-material/Menu"
-import AccountCircle from "@mui/icons-material/AccountCircle"
+} from "@tracker/common";
+import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { useNavigate } from "react-router-dom";
 
-const pages = ["Dashboard"]
-const settings = ["Settings", "Logout"]
+const pages = [
+  { title: "Dashboard", path: "/dashboard" },
+  { title: "Manage", path: "/manage" },
+  { title: "Add Tracker", path: "/tracker/new" },
+];
+const settings = ["Settings", "Logout"];
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
+
+  const goTo = (page: string) => () => {
+    navigate(page);
+  };
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget)
-  }
+    setAnchorElNav(event.currentTarget);
+  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget)
-  }
+    setAnchorElUser(event.currentTarget);
+  };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
+    setAnchorElNav(null);
+  };
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
-  }
+    setAnchorElUser(null);
+  };
 
   return (
     <AppBar position="static">
@@ -76,9 +86,9 @@ const Header = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map(({ title, path }) => (
+                <MenuItem key={title} onClick={goTo(path)}>
+                  <Typography textAlign="center">{title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -92,14 +102,14 @@ const Header = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map(({ title, path }) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={title}
+                onClick={goTo(path)}
                 sx={{ my: 2, color: "white", display: "block" }}
                 variant="text"
               >
-                {page}
+                {title}
               </Button>
             ))}
           </Box>
@@ -140,6 +150,6 @@ const Header = () => {
         </Toolbar>
       </Container>
     </AppBar>
-  )
-}
-export { Header }
+  );
+};
+export { Header };

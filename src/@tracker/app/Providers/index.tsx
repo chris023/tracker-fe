@@ -1,6 +1,9 @@
-import { ThemeProvider as MuiThemeProvider, createTheme } from "@tracker/common"
-import { ThemeProvider as EmotionThemeProvider } from "@emotion/react"
-import { BrowserRouter } from "react-router-dom"
+import {
+  ThemeProvider as MuiThemeProvider,
+  createTheme,
+} from "@tracker/common";
+import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
+import { BrowserRouter } from "react-router-dom";
 
 const Providers: React.FunctionComponent = ({ children }) => {
   const theme = createTheme({
@@ -17,13 +20,20 @@ const Providers: React.FunctionComponent = ({ children }) => {
           variant: "outlined",
         },
       },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            textTransform: "none",
+          },
+        },
+      },
       MuiTextField: {
         defaultProps: {
           fullWidth: true,
         },
       },
     },
-  })
+  });
 
   return (
     <BrowserRouter>
@@ -31,7 +41,7 @@ const Providers: React.FunctionComponent = ({ children }) => {
         <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
       </MuiThemeProvider>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export { Providers }
+export { Providers };
