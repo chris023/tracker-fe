@@ -5,6 +5,13 @@ import { BrowserRouter } from "react-router-dom"
 const Providers: React.FunctionComponent = ({ children }) => {
   const theme = createTheme({
     components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: "none",
+          },
+        },
+      },
       MuiPaper: {
         defaultProps: {
           variant: "outlined",
