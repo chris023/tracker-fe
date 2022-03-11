@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 const pages = [
   { title: "Dashboard", path: "/dashboard" },
   { title: "Manage", path: "/manage" },
-  { title: "Add Tracker", path: "/tracker/new" },
+  { title: "Configure", path: "/configure" },
 ];
 const settings = ["Settings", "Logout"];
 

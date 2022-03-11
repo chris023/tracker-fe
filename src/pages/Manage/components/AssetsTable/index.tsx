@@ -1,67 +1,86 @@
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { Box, IconButton } from "@tracker/common";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import EditIcon from "@mui/icons-material/Edit";
+import { CreateAsset } from "..";
+import casual from "casual-browserify";
+
+casual.seed(123);
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "Name", width: 90 },
+  { field: "id", headerName: "Name" },
   {
-    field: "firstName",
+    field: "description",
     headerName: "Description",
     width: 150,
     editable: true,
   },
   {
-    field: "lastName",
+    field: "location",
     headerName: "Location",
-    width: 150,
+    width: 300,
     editable: true,
   },
   {
-    field: "age",
+    field: "lastPing",
     headerName: "Last Ping",
     type: "number",
     width: 110,
     editable: true,
   },
   {
-    field: "age",
+    field: "trackerId",
     headerName: "Tracker",
     type: "number",
     width: 110,
   },
   {
-    field: "fullName",
+    field: "",
     headerName: "Actions",
     description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+    renderCell: () => {
+      return (
+        <IconButton>
+          <EditIcon />
+        </IconButton>
+      );
+    },
   },
 ];
 
-const rows = [
-  { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-  { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
+const rows = [...new Array(10)].map(() => ({
+  id: casual.uuid,
+  description: casual.description,
+  location: casual.address,
+  lastPing: casual.date(),
+  trackerId: casual.uuid,
+}));
 
 const AssetsTable = () => {
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-      />
-    </div>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          pr: 2,
+          pb: 1,
+        }}
+      >
+        <CreateAsset />
+      </Box>
+      <div style={{ height: 372, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+        />
+      </div>
+    </>
   );
 };
 

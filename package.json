@@ -16,6 +16,7 @@
     "@types/node": "^16.11.25",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "casual-browserify": "^1.5.19-2",
     "formik": "^2.2.9",
     "framer-motion": "^6.2.7",
     "leaflet": "^1.7.1",

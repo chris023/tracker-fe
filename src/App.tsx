@@ -3,7 +3,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Header, Providers } from "@tracker/app";
 import { Dashboard, Login, Manage } from "pages";
 
-import { AssetsTable, TrackersTable } from "./pages/Manage/components";
+import {
+  AssetsTable,
+  CreateAsset,
+  TrackersTable,
+} from "./pages/Manage/components";
 
 const App = () => {
   return (
