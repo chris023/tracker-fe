@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import type {} from "@mui/x-data-grid/themeAugmentation"
+
 import {
   ThemeProvider as MuiThemeProvider,
   createTheme,

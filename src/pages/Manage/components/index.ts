@@ -1,3 +1,2 @@
-export * from "./AssetsTable";
-export * from "./CreateAsset";
-export * from "./TrackersTable";
+export * from "./AssetsTable"
+export * from "./TrackersTable"

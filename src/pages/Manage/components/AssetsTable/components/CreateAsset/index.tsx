@@ -10,6 +10,7 @@ import {
   Stack,
   TextField,
   IconButton,
+  Tooltip,
 } from "@tracker/common"
 
 import { Form, Formik } from "formik"
@@ -19,7 +20,7 @@ import { GroupingTags, TrackerAutoComplete } from "./components"
 
 export interface ICreateAssetForm {
   name: string
-  description: string
+  description?: string
   tag: string
   tags: string[]
   trackerId: string | null
@@ -42,14 +43,16 @@ const CreateAsset: React.FunctionComponent<ICreateAssetProps> = ({
   }
 
   return (
-    <>
+    <div>
       {(() => {
         switch (mode) {
           case "editing":
             return (
-              <IconButton onClick={() => setOpen(true)}>
-                <EditIcon />
-              </IconButton>
+              <Tooltip title="Edit">
+                <IconButton onClick={() => setOpen(true)}>
+                  <EditIcon />
+                </IconButton>
+              </Tooltip>
             )
           case "creating":
           default:
@@ -106,7 +109,7 @@ const CreateAsset: React.FunctionComponent<ICreateAssetProps> = ({
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   )
 }
 
