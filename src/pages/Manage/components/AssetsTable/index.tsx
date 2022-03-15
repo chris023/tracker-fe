@@ -12,38 +12,37 @@ const columns: GridColDef[] = [
   {
     field: "description",
     headerName: "Description",
-    width: 150,
     editable: true,
   },
   {
     field: "location",
     headerName: "Location",
-    width: 300,
     editable: true,
   },
   {
     field: "lastPing",
     headerName: "Last Ping",
     type: "number",
-    width: 110,
     editable: true,
   },
   {
     field: "trackerId",
     headerName: "Tracker",
     type: "number",
-    width: 110,
   },
   {
     field: "",
     headerName: "Actions",
     description: "This column has a value getter and is not sortable.",
     sortable: false,
-    width: 160,
     renderCell: ({ row }: any) => {
-      const { name, description } = row
+      const { name, description, trackerId } = row
 
-      return <CreateAsset initialValues={{ name, description, tags: [] }} />
+      return (
+        <CreateAsset
+          initialValues={{ name, description, trackerId, tags: [] }}
+        />
+      )
     },
   },
 ]

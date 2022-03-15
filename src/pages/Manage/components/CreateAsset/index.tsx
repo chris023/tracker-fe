@@ -15,13 +15,14 @@ import {
 import { Form, Formik } from "formik"
 import EditIcon from "@mui/icons-material/Edit"
 
-import { GroupingTags } from "./components"
+import { GroupingTags, TrackerAutoComplete } from "./components"
 
 export interface ICreateAssetForm {
   name: string
   description: string
   tag: string
   tags: string[]
+  trackerId: string | null
 }
 
 interface ICreateAssetProps {
@@ -71,7 +72,13 @@ const CreateAsset: React.FunctionComponent<ICreateAssetProps> = ({
           <Box sx={{ paddingTop: 1 }}>
             <Formik<ICreateAssetForm>
               initialValues={{
-                ...{ name: "", description: "", tag: "", tags: [] },
+                ...{
+                  name: "",
+                  description: "",
+                  tag: "",
+                  tags: [],
+                  trackerId: null,
+                },
                 ...initialValues,
               }}
               onSubmit={handleSubmit}
@@ -85,6 +92,7 @@ const CreateAsset: React.FunctionComponent<ICreateAssetProps> = ({
                     multiline
                     minRows={4}
                   />
+                  <TrackerAutoComplete />
                   <GroupingTags />
                 </Stack>
               </Form>
