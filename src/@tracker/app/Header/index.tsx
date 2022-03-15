@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 import {
   AppBar,
@@ -11,41 +11,45 @@ import {
   Button,
   Tooltip,
   MenuItem,
-} from "@tracker/common";
-import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useNavigate } from "react-router-dom";
+} from "@tracker/common"
+
+import MenuIcon from "@mui/icons-material/Menu"
+import AccountCircle from "@mui/icons-material/AccountCircle"
+import { useNavigate } from "react-router-dom"
+
+import { DarkModeToggle } from "./components"
 
 const pages = [
   { title: "Dashboard", path: "/dashboard" },
   { title: "Manage", path: "/manage" },
   { title: "Configure", path: "/configure" },
-];
-const settings = ["Settings", "Logout"];
+]
+const settings = ["Settings", "Logout"]
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  const navigate = useNavigate();
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
+
+  const navigate = useNavigate()
 
   const goTo = (page: string) => () => {
-    navigate(page);
-  };
+    navigate(page)
+  }
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
+    setAnchorElNav(event.currentTarget)
+  }
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    setAnchorElUser(event.currentTarget)
+  }
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+    setAnchorElNav(null)
+  }
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    setAnchorElUser(null)
+  }
 
   return (
     <AppBar position="static">
@@ -117,11 +121,11 @@ const Header = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton
+                size="large"
                 onClick={handleOpenUserMenu}
-                sx={{ p: 0, color: (theme) => theme.palette.action.active }}
-                color="info"
+                color="inherit"
               >
-                <AccountCircle color="inherit" />
+                <AccountCircle />
               </IconButton>
             </Tooltip>
             <Menu
@@ -145,11 +149,14 @@ const Header = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem>
+                <DarkModeToggle />
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
-  );
-};
-export { Header };
+  )
+}
+export { Header }

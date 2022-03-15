@@ -1,13 +1,14 @@
-import { Box, IconButton } from "@tracker/common";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import EditIcon from "@mui/icons-material/Edit";
-import { CreateAsset } from "..";
-import casual from "casual-browserify";
+import { Box } from "@tracker/common"
+import { DataGrid, GridColDef } from "@mui/x-data-grid"
 
-casual.seed(123);
+import { CreateAsset } from ".."
+import casual from "casual-browserify"
+
+casual.seed(123)
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "Name" },
+  { field: "id" },
+  { field: "name", headerName: "Name" },
   {
     field: "description",
     headerName: "Description",
@@ -39,23 +40,22 @@ const columns: GridColDef[] = [
     description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
-    renderCell: () => {
-      return (
-        <IconButton>
-          <EditIcon />
-        </IconButton>
-      );
+    renderCell: ({ row }: any) => {
+      const { name, description } = row
+
+      return <CreateAsset initialValues={{ name, description, tags: [] }} />
     },
   },
-];
+]
 
 const rows = [...new Array(10)].map(() => ({
   id: casual.uuid,
+  name: casual.name,
   description: casual.description,
   location: casual.address,
   lastPing: casual.date(),
   trackerId: casual.uuid,
-}));
+}))
 
 const AssetsTable = () => {
   return (
@@ -78,10 +78,11 @@ const AssetsTable = () => {
           rowsPerPageOptions={[5]}
           checkboxSelection
           disableSelectionOnClick
+          columnVisibilityModel={{ id: false }}
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export { AssetsTable };
+export { AssetsTable }

@@ -1,47 +1,13 @@
-import {
-  ThemeProvider as MuiThemeProvider,
-  createTheme,
-} from "@tracker/common";
-import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom"
+
+import { ThemeProvider } from "./ThemeProvider"
 
 const Providers: React.FunctionComponent = ({ children }) => {
-  const theme = createTheme({
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            textTransform: "none",
-          },
-        },
-      },
-      MuiPaper: {
-        defaultProps: {
-          variant: "outlined",
-        },
-      },
-      MuiTab: {
-        styleOverrides: {
-          root: {
-            textTransform: "none",
-          },
-        },
-      },
-      MuiTextField: {
-        defaultProps: {
-          fullWidth: true,
-        },
-      },
-    },
-  });
-
   return (
     <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
-        <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
-      </MuiThemeProvider>
+      <ThemeProvider>{children}</ThemeProvider>
     </BrowserRouter>
-  );
-};
+  )
+}
 
-export { Providers };
+export { Providers }
