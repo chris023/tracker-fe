@@ -33,7 +33,7 @@ export const columns: GridColDef[] = [
     renderCell: ({ row }: { row: IRowActionsCellProps }) => {
       return <RowActionsCell {...row} />
     },
-    width: 120,
+    width: 100,
   },
 ].map((v) => {
   if (v.renderCell) {
