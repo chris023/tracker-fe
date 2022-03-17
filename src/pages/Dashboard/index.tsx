@@ -1,7 +1,14 @@
-import { Map } from "./components"
+import { Box } from "@tracker/common"
+
+import { Drawer, Map } from "./components"
 
 const Dashboard = () => {
-  return <Map />
+  return (
+    <Box sx={{ display: "flex" }}>
+      <Drawer />
+      <Map />
+    </Box>
+  )
 }
 
 export { Dashboard }
