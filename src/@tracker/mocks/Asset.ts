@@ -1,5 +1,4 @@
 import casual from "casual-browserify"
-import { setDefaultResultOrder } from "dns/promises"
 // @ts-ignore
 import pr from "pseudo-random"
 
